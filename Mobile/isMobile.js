@@ -28,3 +28,8 @@ var isMobile = {
 if( isMobile.any() ) alert('Mobile');
 
 if( isMobile.iOS() ) alert('iOS');
+
+//if you use jQuery
+$(element).on(isMobile ? 'touchend' : 'click', function(e) {
+    //Do something.....
+});

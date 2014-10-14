@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        #testMe{
+            font-size: 20px;
+        }
+        .colorGreen{
+            color: green;
+        }
+        .backgroundRed{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<!--
+    javaScript classList API
+-->
+<div id="testMe">Some text</div>
+<input type="button" id="toggleMyClass" value="toggle .colorGreen class">
+<input type="button" id="addMyClass" value="add .backgroundRed  class">
+<input type="button" id="removeMyClass" value="remove .backgroundRed  class">
+<div id="log"></div>
+
+
+<script>
+    window.onload = function(){
+        var testMe = document.getElementById('testMe'),
+                log = document.getElementById('log');
+
+
+        //write result in log block
+        var addLog = function(){
+            var c1 = testMe.classList.contains('colorGreen');
+            var c2 = testMe.classList.contains('backgroundRed');
+            log.innerHTML += '<br/>Classes -> ' + (c1?'.colorGreen ':'') + (c2?'.backgroundRed ':'');
+        }
+
+        document.getElementById('toggleMyClass').onclick = function(){
+            testMe.classList.toggle('colorGreen');
+            addLog();
+        }
+
+        document.getElementById('addMyClass').onclick = function(){
+            testMe.classList.add('backgroundRed');
+            addLog();
+        }
+
+        document.getElementById('removeMyClass').onclick = function(){
+            testMe.classList.remove('backgroundRed');
+            addLog();
+        }
+    };
+</script>
+
+</body>
+</html>
