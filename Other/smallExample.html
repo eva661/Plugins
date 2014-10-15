@@ -35,10 +35,10 @@
 
 
 
-        <a href="#" style="display:block; width: 20px; height: 10px; background: red;"></a>
-        <a href="#" style="display:block; width: 20px; height: 30px; background: red;"></a>
-        <a href="#" style="display:block; width: 20px; height: 40px; background: red;"></a>
-        <a href="#" style="display:block; width: 20px; height: 150px; background: red;"></a>
+        <a href="#" style="display:block; height: 10px; background: red;"></a>
+        <a href="#" style="display:block; height: 30px; background: red;"></a>
+        <a href="#" style="display:block; height: 40px; background: red;"></a>
+        <a href="#" style="display:block; height: 150px; background: red;"></a>
 
 
 
@@ -87,7 +87,8 @@
 
                     var settings = $.extend( {
                         'element'         : 'div',
-                        'backgroundColor' : 'blue'
+                        'backgroundColor' : 'blue',
+                        'text': 'The Highest element'
                         }, options);
 
                     $(options.element).each(function(index, value) {
@@ -98,9 +99,8 @@
                     });
 
                     highestElement.css('background-color', settings.backgroundColor);
+                    highestElement.text(settings.text);
 
-                    console.log('=====max', max);
-                    console.log('highestElement', highestElement);
                     return highestElement;
 
                 };
@@ -108,14 +108,9 @@
 
             $(document).myPlugin({
                 element: 'a',
-                'backgroundColor' : 'yellow'
+                backgroundColor : 'yellow',
+                text: 'Olololo and bla-bla-bla'
             });
-
-
-
-
-
-
 
         </script>
     </body>
