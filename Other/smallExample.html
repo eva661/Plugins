@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+
+        </style>
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!--<div id="fun">
+            <p>Small Plugin</p>
+        </div>-->
+        <div style="height: 40px;"></div>
+        <div style="height: 90px;"></div>
+        <div style="height: 80px;"></div>
+        <div style="height: 180px;"></div>
+        <div style="height: 10px;"></div>
+
+
+
+        <a href="#" style="display:block; width: 20px; height: 10px; background: red;"></a>
+        <a href="#" style="display:block; width: 20px; height: 30px; background: red;"></a>
+        <a href="#" style="display:block; width: 20px; height: 30px; background: red;"></a>
+        <a href="#" style="display:block; width: 20px; height: 50px; background: red;"></a>
+
+
+
+        <!--<div id="parent_div">
+            <span>text 1</span>
+            <span>text 2</span>
+            <span>text 3</span>
+            <span>text 4</span>
+            <span>text 5</span>
+            <span>text 6</span>
+        </div>-->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script>
+
+
+            var arrayData = []; // массив, для данных
+            var num = 0; // счетчик, для родительских елементов
+            $('div').each(function(){ // перебираем все родительские елементы
+                var oneDiv = $(this);
+                console.log(oneDiv);
+                var countSpan = oneDiv.find('span').length - 1; // считаем количество span'ов в одном родителе
+                var spansData = []; // массив для данных из span'он одного родителя
+
+                for(i = 0; i <= countSpan; i++){ // перебираем все span'ы одного родителя
+                    var dataSpan = oneDiv.find('span').eq(i).html(); // получаем данные из одного span'а
+                    spansData[i] = dataSpan; // записываем в массив данные
+                }
+                arrayData[num] = spansData; // записываем в основной массиы массив с данными из спанов одного родителя
+                num ++; // увеличиваем счетчик родителей
+            });
+            console.log(arrayData); // выводим массив в консоль
+
+
+
+
+            (function($){
+                $.fn.myPlugin = function(options) {
+                    console.log('options', options);
+                    //console.log('options', be);
+
+                    var max = 0,
+                        highestElement;
+
+                    var settings = $.extend( {
+                        'element'         : 'div',
+                        'backgroundColor' : 'blue'
+                        }, options);
+
+                    $(options.element).each(function(index, value) {
+                        if ($(this).height() > max) {
+                            max = $(this).height();
+                            highestElement = $(this);
+                            //highestElement.css('background-color', $(options.backgroundColor))
+                        }
+                        //max = Math.max( max, $(this).height() );
+                    });
+
+
+                    console.log(max);
+                    console.log(highestElement);
+
+                    return highestElement;
+
+                };
+            })(jQuery);
+
+            $(document).myPlugin({
+                element: 'a'
+            });
+
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
