@@ -37,8 +37,8 @@
 
         <a href="#" style="display:block; width: 20px; height: 10px; background: red;"></a>
         <a href="#" style="display:block; width: 20px; height: 30px; background: red;"></a>
-        <a href="#" style="display:block; width: 20px; height: 30px; background: red;"></a>
-        <a href="#" style="display:block; width: 20px; height: 50px; background: red;"></a>
+        <a href="#" style="display:block; width: 20px; height: 40px; background: red;"></a>
+        <a href="#" style="display:block; width: 20px; height: 150px; background: red;"></a>
 
 
 
@@ -81,7 +81,6 @@
             (function($){
                 $.fn.myPlugin = function(options) {
                     console.log('options', options);
-                    //console.log('options', be);
 
                     var max = 0,
                         highestElement;
@@ -95,22 +94,21 @@
                         if ($(this).height() > max) {
                             max = $(this).height();
                             highestElement = $(this);
-                            //highestElement.css('background-color', $(options.backgroundColor))
                         }
-                        //max = Math.max( max, $(this).height() );
                     });
 
+                    highestElement.css('background-color', settings.backgroundColor);
 
-                    console.log(max);
-                    console.log(highestElement);
-
+                    console.log('=====max', max);
+                    console.log('highestElement', highestElement);
                     return highestElement;
 
                 };
             })(jQuery);
 
             $(document).myPlugin({
-                element: 'a'
+                element: 'a',
+                'backgroundColor' : 'yellow'
             });
 
 
