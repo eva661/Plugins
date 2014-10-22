@@ -105,13 +105,83 @@
 
                 };
             })(jQuery);
+//=======================================================
+            function Tooltip(collection) {
+                this.collection = collection;
+            }
+
+            Tooltip.prototype = {
+                collection : {},
+                debug: function(){
+                    console.log(this);
+                    console.log(this.collection);
+                    return true;
+                },
+                findHighestElement: function() {
+                    console.log('foo')
+                },
+                applyChanges: function(){
+
+                }
+            };
+
+            new Tooltip();
+
+
+            $.fn.Tooltips = function(config) {
+
+                new Tooltip(config)
+
+
+            };
+
+
+            jQuery('a').Tooltips();
+
+            //=======================================================
 
             $(document).myPlugin({
-                element: 'a',
                 backgroundColor : 'yellow',
                 text: 'Olololo and bla-bla-bla'
             });
 
+            function ViewModel()
+            {
+                var self = this;
+
+                self.list = ko.observableArray([]);
+
+                self.list.push({title: 'foo', erer: '100500'});
+
+                self.age = ko.observable(10);
+                self.ageInfo = ko.computed(function(){
+                    return 'My age is '
+                     self.age();
+                })
+            }
+
+
+
+
+
+
+
         </script>
+
+    <span><input type="text" data-bind="value: age"></span>
+    <span data-bind="text: ageInfo"></span>
+
+        <table id="ttt">
+            <tbody data-bind="foreach: list">
+                <tr>
+                    <td data-bind="text: title"></td><td data-bind="text:erer"><input type="text" data-bind="value: erer"/></td></tr>
+            </tbody>
+
+        </table>
+
+    <script>
+    ko.applyBindings(new ViewModel(), document).getElementById('tttt'));
+    </script>
+
     </body>
 </html>

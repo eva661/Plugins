@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+
+        </style>
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+    <form action="">
+        <label for="name">Name</label>
+        <input id="name" class="tooltip" data-helper="Enter your name" data-error="ERROR" type="text" value="" name="name"/>
+        <br/>
+        <label for="surname">Surname</label>
+        <input id="surname" data-helper="Enter your surname" data-error="ERROR" type="text" value="" name="name"/>
+    </form>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script>
+
+            /*(function($){
+                $.fn.Tooltip = function(options) {
+                    this.each(function(index, value) {
+                        console.log(this);
+                    });
+
+                };
+            })(jQuery);
+
+            $('input').Tooltip();*/
+
+            var T = window.T || {};
+            !function (jQuery) {
+                T.Tooltips = function (tooltips) {
+                    this.initialize(tooltips);
+                }
+
+                T.Tooltips.prototype = {
+                    initialize: function (tooltips) {
+                        this.tooltips = tooltips;
+                        console.log('initialize');
+                        // this.addEvents();
+                    },
+
+                    addEvents: function () {
+                        console.log('addEvents');
+                        return;
+                    },
+
+                    addHoverEvents: function () {
+                        //jQuery(this.tooltips).off('mouseenter');
+                        //jQuery(this.tooltips).off('mouseleave');
+
+                        jQuery.each(jQuery(this.tooltips), jQuery.proxy(function(i, tooltip){
+                            jQuery(tooltip).on('mouseenter', jQuery.proxy(function(){
+                                console.log('mouseenter');
+                                var type = jQuery(tooltip).attr('data-type') || '';
+                                this.addTooltip(tooltip, jQuery(tooltip).attr('data-helper'), type)
+                            }, this));
+
+                            jQuery(tooltip).on('mouseleave', jQuery.proxy(function(){
+                                console.log('mouseleave');
+                                jQuery('.tooltip').remove();
+                            }, this));
+                        },this));
+                    },
+
+                    addTooltip: function (element, message, type) {
+                        var tooltipField = jQuery('<div class="popup tooltip ' + type + '"><div class="arrow"></div>' + message + '</div>');
+                        jQuery(element).append(tooltipField);
+
+                        if (type == 'top-tooltip' && message.length > 10) {
+                            tooltipField.css('width', 282);
+                        }
+
+                        var toolTipHeight = tooltipField.outerHeight();
+                        var columnHeight = jQuery(element).outerHeight() + 15;
+                        var columnWidth = jQuery(element).outerWidth();
+
+                        if (type == 'top-tooltip') {
+                            tooltipField.css('top', -toolTipHeight);
+
+                            if (message.length > 10) {
+                                tooltipField.css('left', -(columnWidth / 2))
+                            }
+
+                        } else if (type == 'error') {
+                            var input = (jQuery('input', element));
+                            if (input.attr('name') == 'allowPriceCollecting' || input.attr('name') == 'algemene_voorwaarden') {
+                                columnHeight -= 40;
+                            }
+
+                            tooltipField.css('top', ((columnHeight - toolTipHeight) / 2) + 'px');
+
+                            var correspondingInput = element.find('input');
+
+                            correspondingInput.on("focus", function() {
+                                var thisElement = jQuery(this);
+
+                                thisElement.removeClass('error');
+                                thisElement.siblings('.tooltip.error').remove();
+
+                                T.Tooltips.prototype.addTooltip(element, jQuery(element).find('input').attr('data-helper'), '');
+                            });
+                        } else {
+                            tooltipField.css('top', ((columnHeight - toolTipHeight) / 2) + 'px');
+                        }
+                    },
+
+                    // we put the tooltip div in the parent, so remove only that tooltip
+                    removeTooltip: function (element) {
+                        jQuery('.tooltip', element.parent()).remove();
+                    }
+                }
+            }(window.jQuery);
+            //T.Tooltips();
+
+
+            new T.Tooltips($('input'));
+
+
+            var human = function(){
+
+            };
+
+
+
+
+
+        </script>
+    </body>
+</html>
